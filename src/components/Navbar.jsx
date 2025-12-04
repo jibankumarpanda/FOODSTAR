@@ -9,14 +9,14 @@ const Navbar = ({setShowLogin}) => {
     <div className="Navbar">
       <img src={assets.logo} alt="" className="logo" />
       <ul className="nav-menu">
-        <li className={menu === "Home" ? "active" : ""}>Home</li>
-        <li>Menu</li>
-        <li>Mobile-app</li>
-        <li>Contact us</li>
+        <li onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>home</li>
+        <li onClick={() => setMenu("menu")} className={menu==="menu"?"active":""}>menu</li>
+        <li oneClick={() => setMenu("mobile-app")}className={menu==="mobile-app"?"active":""}>Mobile-app</li>
+        <li oneClick={() => setMenu("contact us")}className={menu==="contact-us"?"active":""}>Contact us</li>
       </ul>
       <div className="navbar-right">
         <img src={assets.search_icon} alt="search" />
-        <div className="cart-icon">
+        <div className="navbar-search-icon">
           <img src={assets.basket_icon} alt="cart" />
           <div className="dot"></div>
         </div>
