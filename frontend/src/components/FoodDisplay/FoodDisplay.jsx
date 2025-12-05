@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import './FoodDisplay.css'
 import { StoreContext } from '../../Context/StoreContext'
+import { assets } from '../../assets/assets';
 
 const FoodDisplay = ({ category, setCategory }) => {
     const { food_list } = useContext(StoreContext)
@@ -21,12 +22,13 @@ const FoodDisplay = ({ category, setCategory }) => {
                                 <img 
                                     className={category === item.category ? "active" : ""} 
                                     src={item.image} 
-                                    alt={item.name} 
+                                    alt={item.name}
                                 />
                             </div>
                             <div className="food-item-info">
                                 <h3>{item.name}</h3>
                                 <p>{item.description}</p>
+                                <img src={assets.rating_starts} alt="Rating" />
                                 <p className="food-item-price">${item.price}</p>
                             </div>
                         </div>

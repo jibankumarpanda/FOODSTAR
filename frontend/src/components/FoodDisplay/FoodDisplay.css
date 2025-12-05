@@ -45,7 +45,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, border 0.3s ease; /* Added border transition */
+    border: 3px solid transparent; /* Add transparent border by default */
+    box-sizing: border-box; /* Ensures border is included in element's dimensions */
 }
 
 .food-item:hover .food-item-img-container img {
