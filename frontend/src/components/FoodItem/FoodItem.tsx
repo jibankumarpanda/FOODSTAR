@@ -11,8 +11,19 @@ interface FoodItemProps {
 }
 
 const FoodItem = ({ id, name, price, description, image }: FoodItemProps) => {
+    const [isClicked, setIsClicked] = React.useState(false);
+
+    const handleClick = () => {
+        setIsClicked(true);
+        setTimeout(() => setIsClicked(false), 200);
+    };
+
     return (
-        <div className='food-item'>
+        <div 
+            className={`food-item ${isClicked ? 'clicked' : ''}`}
+            onClick={handleClick}
+            style={{ cursor: 'pointer' }}
+        >
            <div className="food-item-img-container">
                 <img className='food-item-image' src={image} alt={name} />
            </div>
@@ -28,4 +39,4 @@ const FoodItem = ({ id, name, price, description, image }: FoodItemProps) => {
     );
 }
 
-export default FoodItem;  // Make sure this line is present
+export default FoodItem;
