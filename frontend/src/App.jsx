@@ -12,6 +12,7 @@ function App() {
  
   const[showLogin,setShowLogin]=useState(false);
   return (
+    <>
     <div className='app'>
       <Navbar/>
       <Routes>
@@ -20,6 +21,8 @@ function App() {
       <Route path="/place-order" element={<PlaceOrder />} />
       </Routes>
     </div>
+    <Footer/>
+    </>
   )
 }
 
