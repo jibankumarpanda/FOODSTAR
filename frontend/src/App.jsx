@@ -6,6 +6,7 @@ import {Routes,Route} from 'react-router-dom'
 import Home from "./pages/Home/Home";
 import Cart from './pages/cart/Cart'
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
+import Footer from './components/Footer/Footer';
 import './App.css'
 function App() {
   const [count, setCount] = useState(0)
