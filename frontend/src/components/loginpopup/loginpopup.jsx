@@ -1,32 +1,106 @@
+// In loginpopup.jsx
 import React, { useState } from 'react';
 import './loginpopup.css';
-import assets from '../../assets/assets';
+import * as assets from '../../assets/assets';
 
 const LoginPopup = ({ setShowLogin }) => {
-  const [currentState, setCurrentState] = useState('sign up');
+  const [currentState, setCurrentState] = useState('Login');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    username: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    setShowLogin(false);
+  };
+
+  const toggleState = () => {
+    setCurrentState(prev => prev === 'Login' ? 'Sign Up' : 'Login');
+    setFormData({
+      name: '',
+      email: '',
+      password: '',
+      username: ''
+    });
+  };
+
   return (
-    <div className='login-popup'>
-      <form className='login-popup-container'>
+    <div className='login-popup' onClick={() => setShowLogin(false)}>
+      <form className='login-popup-container' onClick={e => e.stopPropagation()} onSubmit={handleSubmit}>
         <div className='login-popup-title'>
           <h2>{currentState}</h2>
-          <img onClick={() => setShowLogin(false)} src={assets.cross_icon} alt='' />
+          <img 
+            onClick={() => setShowLogin(false)} 
+            src="/src/assets/cross_icon.png"
+            alt='Close' 
+            style={{cursor: 'pointer'}} 
+          />
         </div>
+        
         <div className='login-popup-inputs'>
-            {currentState === "sign up" ? <></> : <input type='text' placeholder='Enter your username' required />  }
-          <input type='text' placeholder='Enter your name' required />
-          <input type='text' placeholder='Enter your email' required />
-          <input type='password' placeholder='Enter your password' required />
+          {currentState === 'Sign Up' && (
+            <input 
+              type='text' 
+              name='username' 
+              placeholder='Enter your username' 
+              value={formData.username}
+              onChange={handleChange}
+              required 
+            />
+          )}
+          <input 
+            type='text' 
+            name='name' 
+            placeholder='Enter your name' 
+            value={formData.name}
+            onChange={handleChange}
+            required 
+          />
+          <input 
+            type='email' 
+            name='email' 
+            placeholder='Enter your email' 
+            value={formData.email}
+            onChange={handleChange}
+            required 
+          />
+          <input 
+            type='password' 
+            name='password' 
+            placeholder='Enter your password' 
+            value={formData.password}
+            onChange={handleChange}
+            required 
+          />
         </div>
-        <button>{currentState === "sign up" ? "create account" : "Login"}</button>
+        
+        <button type='submit'>{currentState === 'Sign Up' ? 'Create Account' : 'Login'}</button>
+        
         <div className='login-popup-condition'>
           <input type='checkbox' required />
-          <p>by connecting, I agree to the terms of use & privacy policy.</p>
+          <p>By continuing, I agree to the terms of use & privacy policy.</p>
         </div>
-        {currentState==="sign up"?<p>By creating an account, I agree to the terms of service & privacy policy.</p>:<></>}
-        <p>Create a new account? <span>click here</span></p>
-        <p>Alrady have an acount? <span>Login here</span></p>
         
+        {currentState === 'Login' ? (
+          <p>Don't have an account? <span onClick={toggleState}>Sign up here</span></p>
+        ) : (
+          <p>Already have an account? <span onClick={toggleState}>Login here</span></p>
+        )}
       </form>
     </div>
-    );
-}
+  );
+};
+
+export default LoginPopup;

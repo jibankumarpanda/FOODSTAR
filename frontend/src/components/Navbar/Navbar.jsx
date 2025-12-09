@@ -6,32 +6,22 @@ const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [cartItems, setCartItems] = useState(0); // Example cart items count
+  const [cartItems, setCartItems] = useState(0);
 
   const menuItems = [
     { id: 'home', label: 'Home', targetId: 'home' },
     { id: 'menu', label: 'Menu', targetId: 'explore-menu' },
-    { id: 'mobile-app', label: 'Mobile App', targetId: 'app-downlode' },
+    { id: 'mobile-app', label: 'Mobile App', targetId: 'app-download' },
     { id: 'contact', label: 'Contact Us', targetId: 'footer' }
   ];
 
   const scrollToSection = (e, targetId) => {
     e.preventDefault();
-    if (targetId === 'home') {
-      // For home, scroll to top of the page
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    } else {
-      // For other sections, scroll to the element
-      const element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-    // Update active menu item
     setMenu(targetId);
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleSearch = (e) => {
@@ -47,7 +37,6 @@ const Navbar = ({ setShowLogin }) => {
     e.stopPropagation();
     setIsSearchOpen(!isSearchOpen);
     if (!isSearchOpen) {
-      // Focus the search input when opening
       setTimeout(() => {
         const searchInput = document.querySelector('.search-input');
         if (searchInput) searchInput.focus();
