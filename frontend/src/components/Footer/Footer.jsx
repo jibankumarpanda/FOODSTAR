@@ -7,7 +7,7 @@ const Footer = () => {
         <div className='footer' id='footer'>
            <div className="footer-content">
             <div className="footer-content-left">
-                <h1 className="logo-text">FoodStar</h1>
+                <h1 className="logo-text">CampusFood</h1>
                 <p> 2025 FoodStar. All rights reserved. Serving delicious meals with love since 2025.</p>
                 <div className="footer-social-icons">
                     <img src={assets.facebook_icon} alt="" />
