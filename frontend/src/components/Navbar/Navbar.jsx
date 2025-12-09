@@ -9,17 +9,49 @@ const Navbar = ({ setShowLogin }) => {
   const [cartItems, setCartItems] = useState(0); // Example cart items count
 
   const menuItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'menu', label: 'Menu' },
-    { id: 'mobile-app', label: 'Mobile App' },
-    { id: 'contact', label: 'Contact Us' }
+    { id: 'home', label: 'Home', targetId: 'home' },
+    { id: 'menu', label: 'Menu', targetId: 'explore-menu' },
+    { id: 'mobile-app', label: 'Mobile App', targetId: 'app-downlode' },
+    { id: 'contact', label: 'Contact Us', targetId: 'footer' }
   ];
+
+  const scrollToSection = (e, targetId) => {
+    e.preventDefault();
+    if (targetId === 'home') {
+      // For home, scroll to top of the page
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      // For other sections, scroll to the element
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    // Update active menu item
+    setMenu(targetId);
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       console.log('Searching for:', searchQuery);
       // Add your search logic here
+    }
+  };
+
+  const toggleSearch = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsSearchOpen(!isSearchOpen);
+    if (!isSearchOpen) {
+      // Focus the search input when opening
+      setTimeout(() => {
+        const searchInput = document.querySelector('.search-input');
+        if (searchInput) searchInput.focus();
+      }, 0);
     }
   };
 
@@ -33,17 +65,22 @@ const Navbar = ({ setShowLogin }) => {
         {menuItems.map((item) => (
           <li 
             key={item.id}
-            onClick={() => setMenu(item.id)}
             className={`${menu === item.id ? 'active' : ''} menu-item`}
           >
-            {item.label}
+            <a 
+              href={`#${item.targetId}`}
+              onClick={(e) => scrollToSection(e, item.targetId)}
+              className="nav-link"
+            >
+              {item.label}
+            </a>
           </li>
         ))}
       </ul>
       
       <div className="navbar-right">
         <div className={`search-container ${isSearchOpen ? 'active' : ''}`}>
-          <form onSubmit={handleSearch} className="search-form">
+          <form onSubmit={handleSearch} className="search-form" onClick={(e) => e.stopPropagation()}>
             <input
               type="text"
               placeholder="Search food, drinks, etc..."
@@ -52,16 +89,13 @@ const Navbar = ({ setShowLogin }) => {
               className="search-input"
               aria-label="Search food items"
             />
-            <button type="submit" className="search-button" aria-label="Search">
-              <img src={assets.search_icon} alt="" className="search-icon" />
-            </button>
           </form>
         </div>
         
         <div className="navbar-actions">
           <button 
             className="search-toggle"
-            onClick={() => setIsSearchOpen(!isSearchOpen)}
+            onClick={toggleSearch}
             aria-label={isSearchOpen ? 'Close search' : 'Open search'}
           >
             <img 

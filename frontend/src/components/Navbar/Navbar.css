@@ -99,13 +99,20 @@
 }
 
 .navbar-menu li {
+  list-style: none;
+  margin: 0 15px;
   position: relative;
-  padding: 0.5rem 0;
-  cursor: pointer;
+}
+
+.navbar-menu .nav-link {
+  color: inherit;
+  text-decoration: none;
   font-weight: 500;
-  color: #333;
-  text-transform: capitalize;
+  cursor: pointer;
+  padding: 5px 0;
+  position: relative;
   transition: color 0.3s ease;
+  display: block;
 }
 
 /* Orange Underline Animation */
@@ -132,6 +139,27 @@
   0% { opacity: 0.3; }
   50% { opacity: 0.7; }
   100% { opacity: 1; }
+}
+
+.navbar-menu li:hover .nav-link,
+.navbar-menu li.active .nav-link {
+  color: #ff6b35;
+}
+
+.navbar-menu .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ff6b35;
+  transition: width 0.3s ease;
+}
+
+.navbar-menu li:hover .nav-link::after,
+.navbar-menu li.active .nav-link::after {
+  width: 100%;
 }
 
 /* Search and Cart Icons */
