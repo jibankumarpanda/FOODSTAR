@@ -8,13 +8,15 @@ import AppDownlode from '../../components/AppDownlode/AppDownlode';
 const Home = () => {
 
     const [category,setCategory] = useState("All");
-     return (
-        <div>
-            <Header/>
-            <ExploreMenu category={category} setCategory={setCategory}/>
-            <FoodDisplay category={category}/>
-            <AppDownlode catagory={category}/>
-        </div>
+    // In Home.jsx
+return (
+    <div id="home">  
+        <Header/>
+        <ExploreMenu category={category} setCategory={setCategory}/>
+        <FoodDisplay category={category}/>
+        <AppDownlode id="app-download" category={category}/>
+    </div>
+
     )
 }
 

@@ -11,7 +11,7 @@ const Navbar = ({ setShowLogin }) => {
   const menuItems = [
     { id: 'home', label: 'Home', targetId: 'home' },
     { id: 'menu', label: 'Menu', targetId: 'explore-menu' },
-    { id: 'mobile-app', label: 'Mobile App', targetId: 'app-download' },
+    { id: 'mobile-app', label: 'Mobile App', targetId: 'app-downlode' },
     { id: 'contact', label: 'Contact Us', targetId: 'footer' }
   ];
 
