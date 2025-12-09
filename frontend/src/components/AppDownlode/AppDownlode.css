@@ -1,0 +1,24 @@
+.app-downlode{
+    margin: 100px auto 80px;
+    padding: 0 20px 40px;
+    font-size: max(3vw,20px);
+    text-align: center;
+    font-weight: 500;
+    max-width: 1200px;
+}
+.app-downlode-platfor{
+    display: flex;
+    justify-content: center;
+    gap: max(2vw,10px);
+    margin: 40px 0 20px;
+    padding-bottom: 20px;
+}
+.app-downlode-platfor img{
+    width: max(30vw,120px);
+    max-width: 180px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.app-downlode-platfor img:hover{
+   transform: scale(1.05);
+}

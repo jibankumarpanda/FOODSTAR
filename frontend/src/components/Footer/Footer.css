@@ -79,7 +79,7 @@
 }
 
 .footer-content-left p {
-    color: #b3b3b3;
+    color: #f7f5f5;
     line-height: 1.6;
     font-size: 14px;
     max-width: 300px;
@@ -144,7 +144,7 @@
 
 .footer-content-center li,
 .footer-content-right li {
-    color: #b3b3b3;
+    color: #efefef;
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 14px;
@@ -194,7 +194,7 @@
 
 .footer-copyri {
     text-align: center;
-    color: #888;
+    color: #f7f6f6;
     font-size: 14px;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
