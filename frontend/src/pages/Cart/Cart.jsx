@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { StoreContext } from '../../Context/StoreProvider';
 import './Cart.css';
-import { assets } from '../../assets/assets';
 
 const Cart = () => {
-    // Temporary mock data - remove this once context is set up
-    const cartItems = {};
+    const { cartItems, food_list } = useContext(StoreContext);
     
     return (
         <div className='cart'>
@@ -19,10 +18,18 @@ const Cart = () => {
                     <p>Remove</p>
                 </div>
                 <br />
-                {Object.keys(cartItems).length > 0 ? (
-                    <div>
-                        <p>Cart items will be displayed here</p>
-                    </div>
+                <hr />
+                {food_list && food_list.length > 0 ? (
+                    food_list.map((item) => {
+                        if (cartItems[item._id] > 0) {
+                            return (
+                                <div key={item._id} className='cart-item-title cart-items-item'>
+                                    <p>{item.name}</p>
+                                </div>
+                            );
+                        }
+                        return null;
+                    })
                 ) : (
                     <div className="cart-items-empty">
                         <p>Your cart is empty</p>
@@ -31,6 +38,6 @@ const Cart = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Cart;

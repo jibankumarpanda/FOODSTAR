@@ -46,4 +46,4 @@ const StoreProvider = ({ children }) => {
 };
 
 // Export the context and provider
-export { StoreContext, StoreProvider as default };
+export { StoreContext, StoreProvider };
