@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './navbar.css';
 import { assets } from '../../assets/assets';
+
+
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
@@ -9,10 +12,11 @@ const Navbar = ({ setShowLogin }) => {
   const [cartItems, setCartItems] = useState(0);
 
   const menuItems = [
-    { id: 'home', label: 'Home', targetId: 'home' },
+    { id: 'home', label: 'Home', targetId: 'home', isLink: true, path: '/' },
     { id: 'menu', label: 'Menu', targetId: 'explore-menu' },
     { id: 'mobile-app', label: 'Mobile App', targetId: 'app-downlode' },
-    { id: 'contact', label: 'Contact Us', targetId: 'footer' }
+    { id: 'contact', label: 'Contact Us', targetId: 'footer' },
+    
   ];
 
   const scrollToSection = (e, targetId) => {
@@ -21,6 +25,24 @@ const Navbar = ({ setShowLogin }) => {
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleHomeClick = (e, item) => {
+    e.preventDefault();
+    setMenu(item.id);
+    
+    // If we're already on the home page, scroll to top
+    if (window.location.pathname === '/') {
+      const homeElement = document.getElementById('home');
+      if (homeElement) {
+        homeElement.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } else {
+      // Otherwise, navigate to home
+      window.location.href = '/';
     }
   };
 
@@ -47,7 +69,7 @@ const Navbar = ({ setShowLogin }) => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <img src={assets.logo} alt="FoodStar Logo" className="logo" />
+        <Link to='/'><img src={assets.logo} alt="FoodStar Logo" className="logo" /></Link>
       </div>
       
       <ul className="navbar-menu">
@@ -56,13 +78,26 @@ const Navbar = ({ setShowLogin }) => {
             key={item.id}
             className={`${menu === item.id ? 'active' : ''} menu-item`}
           >
-            <a 
-              href={`#${item.targetId}`}
-              onClick={(e) => scrollToSection(e, item.targetId)}
-              className="nav-link"
-            >
-              {item.label}
-            </a>
+            {item.isLink ? (
+              <a 
+                href={item.path}
+                className="nav-link"
+                onClick={(e) => handleHomeClick(e, item)}
+              >
+                {item.label}
+              </a>
+            ) : (
+              <a 
+                href={`#${item.targetId}`}
+                onClick={(e) => {
+                  setMenu(item.id);
+                  scrollToSection(e, item.targetId);
+                }}
+                className="nav-link"
+              >
+                {item.label}
+              </a>
+            )}
           </li>
         ))}
       </ul>
@@ -96,11 +131,11 @@ const Navbar = ({ setShowLogin }) => {
           
           <div className="navbar-cart">
             <div className="cart-icon-wrapper">
-              <img 
+             <Link to='/cart'><img 
                 src={assets.basket_icon} 
                 alt="Shopping Cart" 
                 className="cart-icon"
-              />
+              /></Link>
               {cartItems > 0 && <span className="cart-count">{cartItems}</span>}
             </div>
           </div>

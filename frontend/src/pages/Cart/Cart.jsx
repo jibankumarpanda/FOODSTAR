@@ -24,7 +24,9 @@ const Cart = () => {
                         <p>Cart items will be displayed here</p>
                     </div>
                 ) : (
-                    <p>Your cart is empty</p>
+                    <div className="cart-items-empty">
+                        <p>Your cart is empty</p>
+                    </div>
                 )}
             </div>
         </div>

@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import ExploreMenu from '../../components/Exploremenu/ExploreMenu';
 import FoodDisplay from '../../components/FoodDisplay/FoodDisplay';
 import AppDownlode from '../../components/AppDownlode/AppDownlode';
+import Cart from '../Cart/Cart';
 
 const Home = () => {
 
@@ -15,6 +16,7 @@ return (
         <ExploreMenu category={category} setCategory={setCategory}/>
         <FoodDisplay category={category}/>
         <AppDownlode id="app-download" category={category}/>
+        <Cart id="cart-items" category={category}/>
     </div>
 
     )
