@@ -50,28 +50,7 @@ const Cart = () => {
                 )}
             </div>
             
-            {food_list && food_list.some(item => cartItems[item._id] > 0) && (
-                <div className="cart-summary">
-                    <h3>Order Summary</h3>
-                    <div className="summary-row">
-                        <span>Subtotal</span>
-                        <span>${food_list.reduce((total, item) => {
-                            return total + (item.price * (cartItems[item._id] || 0));
-                        }, 0).toFixed(2)}</span>
-                    </div>
-                    <div className="summary-row">
-                        <span>Shipping</span>
-                        <span>Free</span>
-                    </div>
-                    <div className="summary-row" style={{fontWeight: 'bold', fontSize: '1.1em'}}>
-                        <span>Total</span>
-                        <span>${food_list.reduce((total, item) => {
-                            return total + (item.price * (cartItems[item._id] || 0));
-                        }, 0).toFixed(2)}</span>
-                    </div>
-                    <button className="checkout-btn">Proceed to Checkout</button>
-                </div>
-            )}
+          
         </div>
     );
 };
