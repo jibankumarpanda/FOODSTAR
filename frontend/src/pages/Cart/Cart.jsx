@@ -189,7 +189,7 @@ const Cart = () => {
                         <div className="cart-support">
                             <h4>Need Help?</h4>
                             <p>Our customer service is available 24/7</p>
-                            <a href="tel:+91933069784">
+                            <a href="tel:+91 9330693750">
                                 <i className="fas fa-phone"></i> +91 933069784
                             </a>
                             <a href="mailto:support@foodstar.com">
