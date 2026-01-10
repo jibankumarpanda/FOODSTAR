@@ -192,7 +192,7 @@ const Cart = () => {
                             <a href="tel:+91 9330693750">
                                 <i className="fas fa-phone"></i> +91 933069784
                             </a>
-                            <a href="mailto:support@foodstar.com">
+                            <a href="mailto:support@jiban.com">
                                 <i className="fas fa-envelope"></i> support@foodstar.com
                             </a>
                         </div>
